@@ -7,7 +7,7 @@ test(100000, 1000, 50000);//100万次抽奖，1000个用户，积分空间为[0,
 test(10000, 2000, 50000);//10万次抽奖，2000个用户，积分空间为[0, 5000)
 test(10000, 5000, 50000);//10万次抽奖，5000个用户，积分空间为[0, 5000)
 
-// test(100000, 50000, 50000);这个非常耗时，别跑
+// test(100000, 50000, 50000);这个非常耗时，别跑。其实后续可以利用worker进行优化
 
 
 
@@ -32,7 +32,7 @@ function test(
 function assertIt(distribution) {
     const points = Object.keys(distribution).map(userId => [userId - 0, distribution[userId].ratio - 0]);
     const line = linearRegression(points);
-    //我们断言的是，区间长度和中奖次数是成正比的，
+    //我们断言的是，对于每个用户来说，区间长度和中奖次数是成正比的，
     //在统计学上这就是均匀分布，拟合后是一条直线
     console.log("直线方程为", line);
     assert.ok(Math.abs(line.m - 0) < 0.001);//斜率接近0
@@ -46,7 +46,7 @@ function getDistribution(result, lengthOfWholeInterval) {
     result.map(item => {
         const { userId, rewardPoints } = item;
         if (distribution[userId] === undefined) {
-            distribution[userId] = { count: 0, rewardPoints };// 记录用户的中奖次数和积分
+            distribution[userId] = { count: 0, rewardPoints };// 记录每个用户的中奖次数和积分
         }
         distribution[userId].count += 1;
     });
