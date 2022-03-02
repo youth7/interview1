@@ -1,0 +1,22 @@
+{
+  "name": "interview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youth7/interview1.git"
+  },
+  "author": "Chris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/youth7/interview1/issues"
+  },
+  "homepage": "https://github.com/youth7/interview1#readme",
+  "dependencies": {
+    "simple-statistics": "^7.7.4"
+  }
+}
